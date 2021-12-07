@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <title>Add New Employee</title>
+
+</head>
+<body>
+<!--same model attribute that is setup on the employee controller-->
+    <div class="container">
+        <form action="#" th:action="@{/employees/save}" th:object="${employee}" method="post" class="col-4">
+            <div class="form-group">
+                <label for="exampleInputFirstName">First Name</label>
+                <!--        *{} selects property on referenced object-->
+                <input type="text" class="form-control mb-4 col-4" id="exampleInputFirstName" th:field="*{firstName}" placeholder="Enter First Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputLastName">Last Name</label>
+                <input type="text" class="form-control mb-4 col-4" id="exampleInputLastName" th:field="*{lastName}" placeholder="Enter Last Name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email</label>
+                <input type="email" class="form-control mb-4 col-4" id="exampleInputEmail1" th:field="*{email}" placeholder="email">
+                <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <button type="submit" class="btn btn-warning col-2">Save</button>
+            <a href="/employees/list">Return to Employees Directory</a>
+        </form>
+    </div>
+</body>
+</html>

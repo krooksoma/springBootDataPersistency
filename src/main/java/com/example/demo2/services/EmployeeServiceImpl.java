@@ -1,42 +1,47 @@
 package com.example.demo2.services;
 
-import com.example.demo2.dao.EmployeeDAO;
+
+import com.example.demo2.dao.EmployeeRepository;
 import com.example.demo2.entity.Employee;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
-    private EmployeeDAO theEmployeeDAO;
+    private EmployeeRepository theEmployeeRepository;
 
-    public EmployeeServiceImpl(EmployeeDAO theEmployeeDAO) {
-        this.theEmployeeDAO = theEmployeeDAO;
+    public EmployeeServiceImpl(EmployeeRepository theEmployeeRepository) {
+        this.theEmployeeRepository = theEmployeeRepository;
     }
 
     @Override
     @Transactional
     public List<Employee> findAll() {
-        return theEmployeeDAO.findAll();
+//        findall and sort by ascending order
+        return theEmployeeRepository.findAllByOrderByLastNameAsc();
     }
 
     @Override
     @Transactional
-    public Employee findById(int theId) {
-        return theEmployeeDAO.findById(theId);
+    public Optional<Employee> findById(int theId) {
+        return theEmployeeRepository.findById(theId);
     }
 
     @Override
     @Transactional
     public void save(Employee newEmployee) {
-        theEmployeeDAO.save(newEmployee);
+        theEmployeeRepository.save(newEmployee);
     }
 
     @Override
     @Transactional
     public void deleteById(int theId) {
-        theEmployeeDAO.deleteById(theId);
+        theEmployeeRepository.deleteById(theId);
     }
+
+
 }
